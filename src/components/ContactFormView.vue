@@ -354,6 +354,8 @@ const submitForm = handleSubmit(async (values) => {
       icon: 'success',
       confirmButtonText: 'Aceptar',
       confirmButtonColor: '#2563eb',
+    }).then(() => {
+      window.location.reload()
     })
 
     // Resetear formulario
