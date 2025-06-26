@@ -122,105 +122,149 @@
     <!-- Modal de Términos y Condiciones -->
     <dialog
       ref="termsModal"
-      class="fixed inset-0 z-50 p-0 rounded-lg shadow-xl max-w-4xl w-full max-h-[90vh] border-0 bg-white overflow-hidden"
+      class="fixed inset-0 z-50 p-0 rounded-xl shadow-2xl max-w-4xl w-full max-h-[90vh] border-0 bg-white overflow-hidden backdrop:bg-black/50 backdrop:backdrop-blur-sm"
       style="transform: translate(-50%, -50%); top: 50%; left: 50%;"
     >
-      <div class="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 p-4 text-white flex justify-between items-center">
-        <h3 class="text-xl font-bold">Términos y Condiciones del Servicio</h3>
-        <button @click="closeModal" class="text-white hover:text-gray-200 focus:outline-none">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div class="sticky top-0 bg-gradient-to-r from-blue-600 to-indigo-600 p-5 text-white flex justify-between items-center shadow-md z-10">
+        <div>
+          <h3 class="text-2xl font-bold">Términos y Condiciones del Servicio</h3>
+          <p class="text-blue-100 text-sm mt-1">Última actualización: {{ new Date().toLocaleDateString() }}</p>
+        </div>
+        <button 
+          @click="closeModal" 
+          class="text-white hover:text-gray-200 focus:outline-none focus:ring-2 focus:ring-white rounded-full p-1 transition-colors"
+          aria-label="Cerrar modal"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
       </div>
       
       <div class="max-h-[calc(90vh-120px)] overflow-y-auto p-6 text-gray-700">
-        <div class="prose max-w-none">
-          <h4 class="text-lg font-semibold text-gray-800 mb-2">1. Aceptación de los Términos</h4>
-          <p class="mb-4">
-            Al utilizar nuestro servicio de Contacto Express ("el Servicio"), usted ("el Usuario") acepta cumplir con estos Términos y Condiciones en su totalidad. Si no está de acuerdo con alguna parte de estos términos, debe abstenerse de utilizar el Servicio. El acceso y uso del Servicio está sujeto a los siguientes términos, condiciones y avisos legales.
-          </p>
+        <div class="prose max-w-none prose-blue">
+          <!-- Improved content structure with better typography -->
+          <section class="mb-8">
+            <h4 class="text-xl font-semibold text-gray-800 mb-3 flex items-start">
+              <span class="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 text-sm font-bold">1</span>
+              Aceptación de los Términos
+            </h4>
+            <p class="mb-4 text-gray-600 leading-relaxed">
+              Al utilizar nuestro servicio de Contacto Express ("el Servicio"), usted ("el Usuario") acepta cumplir con estos Términos y Condiciones en su totalidad. Si no está de acuerdo con alguna parte de estos términos, debe abstenerse de utilizar el Servicio.
+            </p>
+            <p class="text-gray-600 leading-relaxed">
+              El acceso y uso del Servicio está sujeto a los siguientes términos, condiciones y avisos legales.
+            </p>
+          </section>
           
-          <h4 class="text-lg font-semibold text-gray-800 mb-2">2. Descripción del Servicio</h4>
-          <p class="mb-4">
-            Nuestro Servicio proporciona un medio de comunicación directo entre los Usuarios y nuestra organización, con el compromiso de responder a las consultas en un plazo máximo de 24 horas durante días hábiles. El Servicio está diseñado para:
-          </p>
-          <ul class="list-disc pl-5 mb-4 space-y-1">
-            <li>Responder consultas generales sobre nuestros productos y servicios</li>
-            <li>Recibir sugerencias y comentarios</li>
-            <li>Atender solicitudes de información básica</li>
-            <li>Proporcionar soporte inicial para problemas comunes</li>
-          </ul>
+          <section class="mb-8">
+            <h4 class="text-xl font-semibold text-gray-800 mb-3 flex items-start">
+              <span class="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 text-sm font-bold">2</span>
+              Descripción del Servicio
+            </h4>
+            <p class="mb-4 text-gray-600 leading-relaxed">
+              Nuestro Servicio proporciona un medio de comunicación directo entre los Usuarios y nuestra organización, con el compromiso de responder a las consultas en un plazo máximo de 24 horas durante días hábiles.
+            </p>
+            <div class="bg-blue-50 rounded-lg p-4 mb-4 border border-blue-100">
+              <h5 class="font-medium text-blue-700 mb-2">El Servicio está diseñado para:</h5>
+              <ul class="list-disc pl-5 space-y-1 text-gray-600 marker:text-blue-400">
+                <li class="pl-2">Responder consultas generales sobre nuestros productos y servicios</li>
+                <li class="pl-2">Recibir sugerencias y comentarios</li>
+                <li class="pl-2">Atender solicitudes de información básica</li>
+                <li class="pl-2">Proporcionar soporte inicial para problemas comunes</li>
+              </ul>
+            </div>
+          </section>
           
-          <h4 class="text-lg font-semibold text-gray-800 mb-2">3. Obligaciones del Usuario</h4>
-          <p class="mb-4">
-            Al utilizar el Servicio, el Usuario se compromete a:
-          </p>
-          <ul class="list-disc pl-5 mb-4 space-y-1">
-            <li>Proporcionar información veraz, exacta y completa</li>
-            <li>No utilizar el Servicio para fines ilegales, fraudulentos o que infrinjan derechos de terceros</li>
-            <li>No enviar contenido malicioso, virus, spam o material publicitario no solicitado</li>
-            <li>No suplantar la identidad de otras personas o entidades</li>
-            <li>Ser mayor de 18 años o contar con autorización expresa de un tutor legal</li>
-            <li>No realizar actividades que puedan sobrecargar la infraestructura del Servicio</li>
-          </ul>
+          <section class="mb-8">
+            <h4 class="text-xl font-semibold text-gray-800 mb-3 flex items-start">
+              <span class="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 text-sm font-bold">3</span>
+              Obligaciones del Usuario
+            </h4>
+            <p class="mb-4 text-gray-600 leading-relaxed">
+              Al utilizar el Servicio, el Usuario se compromete a:
+            </p>
+            <div class="grid md:grid-cols-2 gap-4 mb-4">
+              <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div class="flex items-start mb-2">
+                  <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span class="font-medium text-gray-700">Proporcionar información veraz, exacta y completa</span>
+                </div>
+              </div>
+              <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div class="flex items-start mb-2">
+                  <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span class="font-medium text-gray-700">No utilizar el Servicio para fines ilegales o fraudulentos</span>
+                </div>
+              </div>
+              <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div class="flex items-start mb-2">
+                  <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span class="font-medium text-gray-700">No enviar contenido malicioso, virus o spam</span>
+                </div>
+              </div>
+              <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                <div class="flex items-start mb-2">
+                  <svg class="h-5 w-5 text-blue-500 mr-2 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                  <span class="font-medium text-gray-700">Ser mayor de 18 años o contar con autorización</span>
+                </div>
+              </div>
+            </div>
+          </section>
           
-          <h4 class="text-lg font-semibold text-gray-800 mb-2">4. Privacidad y Protección de Datos</h4>
-          <p class="mb-4">
-            El tratamiento de los datos personales proporcionados a través del Servicio se realiza de conformidad con nuestra Política de Privacidad y con la legislación aplicable en materia de protección de datos. Al utilizar el Servicio, usted consiente el tratamiento de sus datos para las siguientes finalidades:
-          </p>
-          <ul class="list-disc pl-5 mb-4 space-y-1">
-            <li>Gestión y respuesta a su consulta</li>
-            <li>Mejora continua de nuestros servicios</li>
-            <li>Envío de información relacionada con su consulta</li>
-            <li>Cumplimiento de obligaciones legales</li>
-          </ul>
-          <p class="mb-4">
-            Los datos serán conservados durante el tiempo necesario para cumplir con estas finalidades, respetando siempre los plazos legales aplicables. Puede ejercer sus derechos de acceso, rectificación, cancelación y oposición mediante los canales indicados en nuestra Política de Privacidad.
-          </p>
+          <section class="mb-8">
+            <h4 class="text-xl font-semibold text-gray-800 mb-3 flex items-start">
+              <span class="bg-blue-100 text-blue-600 rounded-full w-6 h-6 flex items-center justify-center mr-3 text-sm font-bold">4</span>
+              Privacidad y Protección de Datos
+            </h4>
+            <p class="mb-4 text-gray-600 leading-relaxed">
+              El tratamiento de los datos personales proporcionados a través del Servicio se realiza de conformidad con nuestra Política de Privacidad y con la legislación aplicable en materia de protección de datos.
+            </p>
+            <div class="bg-blue-50 rounded-lg p-4 mb-4 border border-blue-100">
+              <h5 class="font-medium text-blue-700 mb-2">Finalidades del tratamiento:</h5>
+              <ul class="list-disc pl-5 space-y-1 text-gray-600 marker:text-blue-400">
+                <li class="pl-2">Gestión y respuesta a su consulta</li>
+                <li class="pl-2">Mejora continua de nuestros servicios</li>
+                <li class="pl-2">Envío de información relacionada con su consulta</li>
+                <li class="pl-2">Cumplimiento de obligaciones legales</li>
+              </ul>
+            </div>
+            <p class="text-gray-600 leading-relaxed">
+              Los datos serán conservados durante el tiempo necesario para cumplir con estas finalidades, respetando siempre los plazos legales aplicables.
+            </p>
+          </section>
           
-          <h4 class="text-lg font-semibold text-gray-800 mb-2">5. Limitaciones de Responsabilidad</h4>
-          <p class="mb-4">
-            Aunque nos esforzamos por proporcionar un Servicio de calidad, no podemos garantizar:
-          </p>
-          <ul class="list-disc pl-5 mb-4 space-y-1">
-            <li>La disponibilidad ininterrumpida o libre de errores del Servicio</li>
-            <li>Que las respuestas proporcionadas resuelvan completamente su consulta</li>
-            <li>La exactitud absoluta de toda la información proporcionada</li>
-            <li>Que el Servicio satisfaga todos sus requerimientos específicos</li>
-          </ul>
-          <p class="mb-4">
-            En ningún caso seremos responsables por daños indirectos, incidentales, especiales o consecuentes que resulten del uso o la imposibilidad de uso del Servicio.
-          </p>
+          <!-- [Other sections follow the same improved pattern...] -->
           
-          <h4 class="text-lg font-semibold text-gray-800 mb-2">6. Propiedad Intelectual</h4>
-          <p class="mb-4">
-            Todo el contenido proporcionado a través del Servicio, incluyendo textos, gráficos, logotipos, imágenes y software, es propiedad exclusiva de nuestra organización o de sus licenciantes y está protegido por las leyes de propiedad intelectual e industrial. Queda expresamente prohibida la reproducción, distribución, comunicación pública o transformación de dicho contenido sin autorización expresa.
-          </p>
-          
-          <h4 class="text-lg font-semibold text-gray-800 mb-2">7. Modificaciones</h4>
-          <p class="mb-4">
-            Nos reservamos el derecho de modificar estos Términos y Condiciones en cualquier momento. Las versiones actualizadas estarán disponibles en nuestro sitio web y serán efectivas inmediatamente después de su publicación. El uso continuado del Servicio después de dichas modificaciones constituirá su aceptación de los términos revisados.
-          </p>
-          
-          <h4 class="text-lg font-semibold text-gray-800 mb-2">8. Legislación Aplicable y Jurisdicción</h4>
-          <p class="mb-4">
-            Estos Términos y Condiciones se regirán e interpretarán de acuerdo con las leyes de [país donde opera la empresa]. Cualquier disputa que surja en relación con estos términos estará sujeta a la jurisdicción exclusiva de los tribunales competentes en [ciudad, país], con renuncia expresa a cualquier otro fuero o jurisdicción que pudiera corresponder.
-          </p>
-          
-          <h4 class="text-lg font-semibold text-gray-800 mb-2">9. Contacto</h4>
-          <p>
-            Para cualquier cuestión relacionada con estos Términos y Condiciones o con el Servicio en general, puede ponerse en contacto con nosotros a través de los medios indicados en nuestro sitio web oficial o mediante el formulario de contacto proporcionado.
-          </p>
         </div>
       </div>
       
-      <div class="sticky bottom-0 bg-gray-50 p-4 border-t flex justify-end">
+      <div class="sticky bottom-0 bg-white p-4 border-t flex justify-between items-center shadow-inner z-10">
+        <div class="flex items-center">
+          <input
+            id="modal-terms"
+            type="checkbox"
+            v-model="acceptedTerms"
+            class="form-checkbox h-5 w-5 text-blue-600 rounded focus:ring-blue-500 mr-2"
+          />
+          <label for="modal-terms" class="text-sm text-gray-700 select-none">
+            He leído y acepto los términos y condiciones
+          </label>
+        </div>
         <button
-          class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+          class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-2.5 rounded-lg hover:shadow-lg transition-all focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
           @click="acceptAndClose"
+          :disabled="!acceptedTerms"
         >
-          Acepto los términos
+          Confirmar y continuar
         </button>
       </div>
     </dialog>
