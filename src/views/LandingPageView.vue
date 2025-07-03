@@ -1,15 +1,26 @@
 <template>
     <div class="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
         <nav class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50">
-            <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-                <div class="flex items-center space-x-2">
-                    <svg class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
-                    </svg>
-                    <span class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Nexus</span>
-                </div>
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+            <svg class="h-8 w-8 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+            <span
+                class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">Nexus</span>
             </div>
+
+            <!-- Botón Iniciar Sesión -->
+            <RouterLink
+            to="/login"
+            class="text-sm font-medium text-blue-600 hover:text-indigo-600 transition px-4 py-2 border border-blue-600 rounded-full hover:bg-blue-50"
+            >
+            Iniciar Sesión
+            </RouterLink>
+        </div>
         </nav>
+
         <section class="relative overflow-hidden">
             <div class="max-w-7xl mx-auto px-6 py-20 md:py-32 flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 z-10">
