@@ -1,113 +1,168 @@
 <template>
-  <div class="p-6 min-h-screen bg-gradient-to-br from-gray-50 to-blue-100">
-    <!-- Encabezado con botón de cerrar sesión -->
-    <div class="flex justify-between items-center mb-6">
+  <div class="p-8 max-w-7xl mx-auto">
+    <!-- Header y botón de logout -->
+    <div class="flex justify-between items-center mb-8">
       <h1 class="text-3xl font-bold text-gray-800">Panel de Control</h1>
-      <button
-        @click="logout"
-        class="bg-red-500 text-white px-4 py-2 rounded-md font-semibold hover:bg-red-600 transition"
-      >
-        Cerrar Sesión
+      <button @click="logout" class="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600">
+        Cerrar sesión
+      </button>
+    </div>
+
+    <!-- Botón para agregar usuario -->
+    <div class="mb-6">
+      <button @click="openModal" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        Agregar Usuario
       </button>
     </div>
 
     <!-- Contadores -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-      <div class="bg-white p-6 rounded-xl shadow border border-gray-200">
-        <h2 class="text-xl font-semibold text-blue-600 mb-2">Usuarios Registrados</h2>
-        <p class="text-4xl font-bold text-gray-800">{{ users.length }}</p>
-        <p class="text-gray-500 mt-2">Total de usuarios registrados en el sistema</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
+      <div class="bg-white shadow rounded-lg p-6">
+        <h2 class="text-xl font-semibold text-gray-800">Total de Usuarios</h2>
+        <p class="text-3xl mt-2 text-blue-600">{{ users.length }}</p>
       </div>
-      <div class="bg-white p-6 rounded-xl shadow border border-gray-200">
-        <h2 class="text-xl font-semibold text-indigo-600 mb-2">Mensajes Recibidos</h2>
-        <p class="text-4xl font-bold text-gray-800">{{ contacts.length }}</p>
-        <p class="text-gray-500 mt-2">Total de mensajes recibidos desde el formulario</p>
+      <div class="bg-white shadow rounded-lg p-6">
+        <h2 class="text-xl font-semibold text-gray-800">Total de Contactos</h2>
+        <p class="text-3xl mt-2 text-indigo-600">{{ contacts.length }}</p>
       </div>
     </div>
 
-    <!-- Tabla de Usuarios -->
-    <details class="mb-6 bg-white rounded-xl shadow border border-gray-200">
-      <summary class="cursor-pointer px-6 py-4 text-lg font-semibold text-gray-700 hover:bg-gray-100">Ver Usuarios</summary>
-      <div class="p-6 overflow-x-auto">
-        <table class="w-full text-left border-collapse">
-          <thead>
-            <tr class="bg-gray-100 text-gray-700">
-              <th class="p-2 border-b">ID</th>
-              <th class="p-2 border-b">Nombre de usuario</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="user in users" :key="user.id" class="hover:bg-gray-50">
-              <td class="p-2 border-b">{{ user.id }}</td>
-              <td class="p-2 border-b">{{ user.username }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <!-- Tablas desplegables -->
+    <details class="mb-4 bg-white rounded shadow p-4">
+      <summary class="cursor-pointer text-lg font-semibold text-blue-600">Usuarios Registrados</summary>
+      <table class="mt-4 w-full text-sm text-left border">
+        <thead class="bg-blue-100 text-blue-900">
+          <tr>
+            <th class="px-4 py-2">ID</th>
+            <th class="px-4 py-2">Username</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="user in users" :key="user.id" class="hover:bg-blue-50">
+            <td class="px-4 py-2">{{ user.id }}</td>
+            <td class="px-4 py-2">{{ user.username }}</td>
+          </tr>
+        </tbody>
+      </table>
     </details>
 
-    <!-- Tabla de Contactos -->
-    <details class="bg-white rounded-xl shadow border border-gray-200">
-      <summary class="cursor-pointer px-6 py-4 text-lg font-semibold text-gray-700 hover:bg-gray-100">Ver Contactos</summary>
-      <div class="p-6 overflow-x-auto">
-        <table class="w-full text-left border-collapse">
-          <thead>
-            <tr class="bg-gray-100 text-gray-700">
-              <th class="p-2 border-b">ID</th>
-              <th class="p-2 border-b">Nombre</th>
-              <th class="p-2 border-b">Correo</th>
-              <th class="p-2 border-b">Mensaje</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="contact in contacts" :key="contact.id" class="hover:bg-gray-50">
-              <td class="p-2 border-b">{{ contact.id }}</td>
-              <td class="p-2 border-b">{{ contact.name }}</td>
-              <td class="p-2 border-b">{{ contact.email }}</td>
-              <td class="p-2 border-b">{{ contact.message }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+    <details class="mb-4 bg-white rounded shadow p-4">
+      <summary class="cursor-pointer text-lg font-semibold text-indigo-600">Contactos Registrados</summary>
+      <table class="mt-4 w-full text-sm text-left border">
+        <thead class="bg-indigo-100 text-indigo-900">
+          <tr>
+            <th class="px-4 py-2">ID</th>
+            <th class="px-4 py-2">Nombre</th>
+            <th class="px-4 py-2">Email</th>
+            <th class="px-4 py-2">Mensaje</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="contact in contacts" :key="contact.id" class="hover:bg-indigo-50">
+            <td class="px-4 py-2">{{ contact.id }}</td>
+            <td class="px-4 py-2">{{ contact.name }}</td>
+            <td class="px-4 py-2">{{ contact.email }}</td>
+            <td class="px-4 py-2">{{ contact.message }}</td>
+          </tr>
+        </tbody>
+      </table>
     </details>
+
+    <!-- Modal agregar usuario -->
+    <div v-if="showModal" class="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg shadow-lg p-6 w-full max-w-md">
+        <h2 class="text-xl font-bold text-gray-800 mb-4">Registrar Usuario</h2>
+        <form @submit.prevent="registerUser" class="space-y-4">
+          <input v-model="newUser.username" type="text" placeholder="Usuario"
+            class="w-full border px-4 py-2 rounded" />
+          <input v-model="newUser.password" type="password" placeholder="Contraseña"
+            class="w-full border px-4 py-2 rounded" />
+          <p v-if="error" class="text-red-600 text-sm">{{ error }}</p>
+          <div class="flex justify-end gap-2">
+            <button @click="closeModal" type="button" class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
+              Cancelar
+            </button>
+            <button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+              Registrar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue'
+import { ref, onMounted } from 'vue'
+import axios from 'axios'
 import { useRouter } from 'vue-router'
 
-const router = useRouter()
 const users = ref([])
 const contacts = ref([])
+const showModal = ref(false)
+const newUser = ref({ username: '', password: '' })
+const error = ref('')
+const router = useRouter()
 
 const fetchData = async () => {
-  const token = localStorage.getItem('token')
-  const headers = {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`
-  }
-
   try {
-    const [usersRes, contactsRes] = await Promise.all([
-      fetch('https://www.gael-lobato.space/api/auth/users', { headers }),
-      fetch('https://www.gael-lobato.space/api/contact', { headers })
+    const token = localStorage.getItem('token')
+    const config = { headers: { Authorization: `Bearer ${token}` } }
+
+    const [userRes, contactRes] = await Promise.all([
+      axios.get('http://localhost:3000/api/auth/users', config),
+      axios.get('http://localhost:3000/api/contact', config)
     ])
 
-    if (usersRes.ok && contactsRes.ok) {
-      users.value = await usersRes.json()
-      contacts.value = await contactsRes.json()
-    } else {
-      console.error('Error al cargar los datos')
-    }
-  } catch (error) {
-    console.error('Error en la petición:', error)
+    users.value = userRes.data
+    contacts.value = contactRes.data
+  } catch (err) {
+    console.error(err)
   }
 }
 
 const logout = () => {
   localStorage.removeItem('token')
-  router.push('/login')
+  router.replace('/login')
+}
+
+const openModal = () => {
+  newUser.value = { username: '', password: '' }
+  error.value = ''
+  showModal.value = true
+}
+
+const closeModal = () => {
+  showModal.value = false
+}
+
+const validateInputs = () => {
+  const { username, password } = newUser.value
+  const usernameValid = /^[^\s]{4,}$/.test(username)
+  const passwordValid = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(password)
+
+  if (!usernameValid) {
+    error.value = 'Usuario debe tener al menos 4 caracteres y sin espacios.'
+    return false
+  }
+  if (!passwordValid) {
+    error.value =
+      'Contraseña debe tener al menos 8 caracteres, incluyendo mayúsculas, minúsculas y números.'
+    return false
+  }
+  return true
+}
+
+const registerUser = async () => {
+  if (!validateInputs()) return
+
+  try {
+    await axios.post('http://localhost:3000/api/auth/register', newUser.value)
+    await fetchData()
+    closeModal()
+  } catch (err) {
+    error.value = err.response?.data?.error || 'Error al registrar usuario.'
+  }
 }
 
 onMounted(fetchData)
